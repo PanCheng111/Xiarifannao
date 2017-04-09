@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>参会人员</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="map-page">
+
+  <ion-list #usersList [hidden]="shownUsers === 0">
+
+    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+
+      <ion-item-divider sticky>
+        <ion-label>
+          {{group.name}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let user of group.usersList" #slidingItem >
+
+        <button ion-item>
+          <h3>{{user.name}}</h3>
+        </button>
+        <ion-checkbox end color="dark" checked="false">签到</ion-checkbox>
+      </ion-item-sliding>
+
+    </ion-item-group>
+
+  </ion-list>
+
+  <ion-list-header [hidden]="shownUsers > 0">
+      No Users Found
+  </ion-list-header>
+</ion-content>

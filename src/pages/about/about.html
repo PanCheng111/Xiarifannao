@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>会议主题</ion-title>
+    <!--<ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="about-header">
+    <img src="assets/img/ionic-logo-white.svg" alt="ionic logo">
+  </div>
+  <div padding class="about-info">
+    <h4>{{meeting.name}}</h4>
+
+    <ion-list no-lines>
+      <ion-item>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-label>时间</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="conferenceDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin" item-left></ion-icon>
+        <ion-label>地点</ion-label>
+        <ion-select>
+          <ion-option value="madison" selected>六盘水</ion-option>
+          <ion-option value="austin">北京</ion-option>
+          <ion-option value="chicago">上海</ion-option>
+          <ion-option value="seattle">广州</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <h5>{{meeting.subject}}</h5>
+    <p>
+      注释：
+      这里是展示会议主题的地方。<br />
+      同时也可以展示会议相关的提醒事项。
+    </p>
+  </div>
+</ion-content>

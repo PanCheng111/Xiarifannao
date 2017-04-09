@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>选择加入的会议</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content meeting-list">
+  <ion-list *ngFor="let meeting of meetingsList">
+    <ion-item (click)="selectMeeting(meeting)">
+      <!--<ion-thumbnail item-left>
+        <img src="{{file.thumbnail}}">
+      </ion-thumbnail>-->
+      <h2>{{meeting.name}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
