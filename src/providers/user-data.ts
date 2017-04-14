@@ -62,6 +62,16 @@ export class UserData {
     this.storage.set('selectedMeeting', meeting);
   }
 
+  cachePdfData(pdfSrc: string, data: Uint8Array) {
+    this.storage.set(pdfSrc, data);
+  }
+
+  getCachedPdfData(pdfSrc: string) {
+    return this.storage.get(pdfSrc).then((value)=> {
+      return value;
+    });
+  }
+
   getUsername(): Promise<string> {
     return this.storage.get('username').then((value) => {
       return value;
@@ -77,7 +87,6 @@ export class UserData {
       return value;
     });
   }
-
   hasLoggedIn(): Promise<boolean> {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
       return value === true;

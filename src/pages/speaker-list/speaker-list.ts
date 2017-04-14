@@ -4,7 +4,7 @@ import { ActionSheet, ActionSheetController, Config, NavController } from 'ionic
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ConferenceData } from '../../providers/conference-data';
-import { SessionDetailPage } from '../session-detail/session-detail';
+//import { SessionDetailPage } from '../session-detail/session-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
 
 
@@ -44,6 +44,8 @@ export class SpeakerListPage {
           path: '../'
         })
         this.filesList.forEach(function(file) {
+              if (file.type == 'folder') file.show = false;
+                else file.show = true;
               file.thumbnail = 'assets/img/icon_file/' + file.type + '.png';
               if (!file.type || file.name.startsWith('.') || (file.name.indexOf('.') == -1 && file.type != 'folder'))
                 file.thumbnail = 'assets/img/icon_file/file.png';
@@ -52,9 +54,9 @@ export class SpeakerListPage {
     });
   }
 
-  goToSessionDetail(session: any) {
-    this.navCtrl.push(SessionDetailPage, session);
-  }
+  // goToSessionDetail(session: any) {
+  //   this.navCtrl.push(SessionDetailPage, session);
+  // }
 
   goToSpeakerDetail(speakerName: any) {
     this.navCtrl.push(SpeakerDetailPage, speakerName);

@@ -7,6 +7,7 @@ import { ConferenceApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
+import { MenuPopoverPage } from '../pages/menu-popover/menu-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
@@ -37,6 +38,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     LoginPage,
     MapPage,
     PopoverPage,
+    MenuPopoverPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,
@@ -61,6 +63,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     LoginPage,
     MapPage,
     PopoverPage,
+    MenuPopoverPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,

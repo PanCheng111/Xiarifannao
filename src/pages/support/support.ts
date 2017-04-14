@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { UserData } from '../../providers/user-data';
 import { AlertController, NavController, ToastController, MenuController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+//import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
 
 @Component({

@@ -50,6 +50,11 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>菜单</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+		    </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
@@ -65,7 +70,7 @@
         </button>
       </ion-list>
 
-      <ion-list>
+      <!--<ion-list>
         <ion-list-header>
           账户
         </ion-list-header>
@@ -73,7 +78,7 @@
           <ion-icon item-left [name]="p.icon" [color]="isActive(p)"></ion-icon>
           {{p.title}}
         </button>
-      </ion-list>
+      </ion-list>-->
 
       <!--<ion-list>
         <ion-list-header>

@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>会议文件</ion-title>
+    <ion-title>会议内容</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content speaker-list">
   <ion-list *ngFor="let file of filesList">
     <ion-item (click)="goToFileDetail(file)">
-      <ion-thumbnail item-left>
+      <ion-thumbnail *ngIf="file.show" item-left>
         <img src="{{file.thumbnail}}">
       </ion-thumbnail>
       <h2>{{file.name}}</h2>

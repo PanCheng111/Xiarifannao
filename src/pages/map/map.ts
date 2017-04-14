@@ -3,7 +3,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ConferenceData } from '../../providers/conference-data';
 
 import { Platform } from 'ionic-angular';
-
+import * as io from "socket.io-client";
 
 declare var google: any;
 
@@ -13,30 +13,68 @@ declare var google: any;
 })
 export class MapPage {
 
-  usersList:any[]
+  usersList:any[];
+  usersCheckIn:any[];
   groups:any[] = [];
   shownUsers: Number = 0;
+  socket: any;
 
   @ViewChild('mapCanvas') mapElement: ElementRef;
   constructor(public confData: ConferenceData, public platform: Platform) {
   }
 
-  ionViewDidLoad() {
+  doRefresh(refresher:any) {
+    console.log('Begin async operation', refresher);
+      this.groups = [];
       this.confData.getUsersAttendList().then((obversabler:any) => {
         obversabler.subscribe((value:any)=> {
-          this.usersList = value;
-          if (value) this.shownUsers = value.length;
-          for (let i = 0; i < value.length; i++) {
+          this.usersList = value.usersAttend;
+          this.usersCheckIn = value.usersCheckIn;
+          if (this.usersList) this.shownUsers = this.usersList.length;
+          for (let i = 0; i < this.usersList.length; i++) {
             let flag = false;
+            if (this.usersCheckIn.indexOf(this.usersList[i].userName) != -1) 
+              this.usersList[i].showCheckIn = true;
+            else this.usersList[i].showCheckIn = false;
             for (let j = 0; j < this.groups.length; j++)
-              if (this.groups[j].name == value[i].group.name) {
+              if (this.groups[j].name == this.usersList[i].group.name) {
                 flag = true;
-                this.groups[j].usersList.push(value[i]);
+                this.groups[j].usersList.push(this.usersList[i]);
               }
             if (!flag) {
               this.groups.push({
-                name: value[i].group.name,
-                usersList : [value[i]]
+                name: this.usersList[i].group.name,
+                usersList : [this.usersList[i]]
+              });
+            }
+          }
+          refresher.complete();
+        });
+      });
+  }
+
+  ionViewDidLoad() {
+      //this.socket = io('http://192.168.1.100:8080');
+      
+      this.confData.getUsersAttendList().then((obversabler:any) => {
+        obversabler.subscribe((value:any)=> {
+          this.usersList = value.usersAttend;
+          this.usersCheckIn = value.usersCheckIn;
+          if (this.usersList) this.shownUsers = this.usersList.length;
+          for (let i = 0; i < this.usersList.length; i++) {
+            let flag = false;
+            if (this.usersCheckIn.indexOf(this.usersList[i].userName) != -1) 
+              this.usersList[i].showCheckIn = true;
+            else this.usersList[i].showCheckIn = false;
+            for (let j = 0; j < this.groups.length; j++)
+              if (this.groups[j].name == this.usersList[i].group.name) {
+                flag = true;
+                this.groups[j].usersList.push(this.usersList[i]);
+              }
+            if (!flag) {
+              this.groups.push({
+                name: this.usersList[i].group.name,
+                usersList : [this.usersList[i]]
               });
             }
           }

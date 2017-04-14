@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{file.name}}</ion-title>
-    <ion-buttons end>
+    <!--<ion-buttons end>
 			<button ion-button icon-only (click)="fullScreen()">
-				<ion-icon name="expand"></ion-icon>
+				<button>全屏</button>
 			</button>
-		</ion-buttons>
+		</ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
@@ -25,11 +25,12 @@
     </button>
   </div>-->
 
-  <pdf-viewer [src]="pdfSrc" 
+  <pdf-viewer #pdfViewer [src]="pdfSrc" 
               style="display: block;"
               [render-text]="true"
               [show-all]="true"
-              [original-size]="false"
+              [original-size]="originalSize"
+              (after-load-complete)="callBackFn($event)"
   ></pdf-viewer>
 
 </ion-content>

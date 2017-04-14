@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.ionic.conferenceapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Ionic Conference</name>
+<widget id="io.ionic.meetingsystem" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>无纸化会议系统</name>
   <description>
-        An Ionic Framework application for the Ionic Conference.
+        An Ionic Framework application for the Meeting System.
   </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
       Ionic Framework Team
@@ -64,6 +64,7 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   </platform>
+  <preference name="orientation" value="landscape" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -71,7 +72,6 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="StatusBarStyle" value="default" />
   <preference name="SplashScreen" value="screen"/>
-  <preference name="orientation" value="default"/>
   <preference name="SplashMaintainAspectRatio" value="true"/>
   <preference name="FadeSplashScreenDuration" value="300"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>

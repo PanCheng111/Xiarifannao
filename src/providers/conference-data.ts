@@ -73,7 +73,10 @@ export class ConferenceData {
       return this.user.getServerAddr().then((serverAddr : string) => {
         return this.user.getSelectedMeeting().then((meeting:any)=>{
           return this.http.get(serverAddr + '/api/manage/MeetingsList/item?uid='+meeting._id).map((data:any)=>{
-            let usersAttend = data.json().usersAttend;
+            let usersAttend = {
+              usersAttend: data.json().usersAttend,
+              usersCheckIn : data.json().usersCheckIn
+            };
             return usersAttend;
           }, this);
         })
@@ -91,6 +94,27 @@ export class ConferenceData {
       });
   }
 
+  sendCheckIn(meeting: any) {
+      return this.user.getServerAddr().then((serverAddr: string) => {
+        return this.user.getUsername().then((userName:string) => {
+          return this.http.get(serverAddr + '/api/manage/meetingsList/checkIn?mid='+meeting._id+'&userName='+userName).map((data:any)=>{
+            let info = data.json();
+            return info;
+          }, this);
+        })
+      });
+  }
+
+  sendCheckOut(meeting: any) {
+      this.user.getServerAddr().then((serverAddr: string) => {
+        this.user.getUsername().then((userName:string)=> {
+          this.http.get(serverAddr + '/api/manage/meetingsList/checkOut?id='+meeting._id+'&userName='+userName).map((data:any)=>{
+            let info = data.json();
+            return info;
+          }, this);
+        })
+      });
+  }
   processData(data: any) {
     // just some good 'ol JS fun with objects and arrays
     // build up the data by linking speakers to sessions

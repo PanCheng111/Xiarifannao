@@ -44,7 +44,13 @@ export class MeetingListPage {
 
   selectMeeting(meeting: any) {
     this.user.setSelectedMeeting(meeting);
-    this.navCtrl.push(TabsPage);
+    this.confData.sendCheckIn(meeting).then((observabler : any) => {
+      observabler.subscribe((value: any) => {
+        if (value == 'success') this.navCtrl.push(TabsPage);
+          else console.log(value.state);
+      })
+    });
+    
   }
 
 }

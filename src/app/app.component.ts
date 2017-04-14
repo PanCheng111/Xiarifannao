@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Events, MenuController, Nav, Platform } from 'ionic-angular';
+import { Events, MenuController, Nav, Platform, PopoverController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
@@ -10,12 +10,12 @@ import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
-import { TutorialPage } from '../pages/tutorial/tutorial';
-import { SchedulePage } from '../pages/schedule/schedule';
+//import { TutorialPage } from '../pages/tutorial/tutorial';
+//import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
-import { MeetingListPage} from '../pages/meeting-list/meeting-list';
-
+//import { MeetingListPage} from '../pages/meeting-list/meeting-list';
+import { MenuPopoverPage } from '../pages/menu-popover/menu-popover';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
@@ -40,10 +40,10 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: '会议流程', component: TabsPage, tabComponent: SchedulePage, icon: 'calendar' },
-    { title: '会议文件', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'map' },
-    { title: '参会人员', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'contacts' },
-    { title: '会议主题', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+   // { title: '会议流程', component: TabsPage, tabComponent: SchedulePage, icon: 'calendar' },
+    { title: '会议内容', component: TabsPage, tabComponent: SpeakerListPage, index: 0, icon: 'calendar' },
+    { title: '参会人员', component: TabsPage, tabComponent: MapPage, index: 1, icon: 'contacts' },
+    { title: '会议主题', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: '账户', component: AccountPage, icon: 'person' },
@@ -62,9 +62,10 @@ export class ConferenceApp {
     public userData: UserData,
     public menu: MenuController,
     public platform: Platform,
-    public confData: ConferenceData,
     public storage: Storage,
-    public splashScreen: SplashScreen
+    public confData: ConferenceData,
+    public splashScreen: SplashScreen,
+    public popoverCtrl: PopoverController
   ) {
     // Check if the user has already seen the tutorial
     //this.storage.get('hasSeenTutorial')
@@ -114,6 +115,10 @@ export class ConferenceApp {
     }
   }
 
+  presentPopover(event: Event) {
+    let popover = this.popoverCtrl.create(MenuPopoverPage);
+    popover.present({ ev: event });
+  }
   // openTutorial() {
   //   this.nav.setRoot(TutorialPage);
   // }
