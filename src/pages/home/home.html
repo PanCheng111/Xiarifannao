@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>跑跑首页</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides pager style="height:25%">
+
+    <ion-slide>
+      <!--<h2>Slide 1</h2>-->
+      <img src="assets/img/slide1.png" />
+    </ion-slide>
+
+    <ion-slide>
+      <!--<h2>Slide 2</h2>-->
+      <img src="assets/img/slide2.png" />
+    </ion-slide>
+
+    <ion-slide>
+      <!--<h2>Slide 3</h2>-->
+      <img src="assets/img/slide3.jpg" />
+    </ion-slide>
+
+</ion-slides>
+
+  <ion-list *ngFor="let req of reqList" list-md-margin-top="0px">
+   
+    <!--<ion-item (click)="goToReqDetail(req)">
+      <ion-avatar item-left>
+        <img src="{{req.thumbnail}}">
+      </ion-avatar>
+      <ion-badge>起点</ion-badge>
+      <h2 style="display:inline">{{req.startplace}}</h2> <br />
+      <ion-badge>终点</ion-badge>
+      <h2 style="display:inline">{{req.endplace}}</h2> <br />
+      <p> {{req.message}} </p>
+    </ion-item>-->
+
+    <ion-card *ngIf="req.stat == 'available'" (click)="goToReqDetail(req)">
+
+      <!--<img src="{{req.thumbnail}}">-->
+      <ion-item large>
+        <ion-avatar item-left large>
+          <img src="{{req.thumbnail}}" large>
+        </ion-avatar>
+        <h2>{{req.type}}</h2>
+        <p>{{req.message}}</p>
+      </ion-item>
+      <!--<ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-fab>-->
+
+      <ion-item small>
+        <button ion-button outline item-left icon-left small>
+          <!--<ion-icon name="log-out" small></ion-icon>-->
+          起点
+        </button>
+        <h6>{{req.startplace}}</h6>
+      </ion-item>
+
+      <ion-item small>
+        <button ion-button outline item-left icon-left small>
+          <!--<ion-icon name="log-in" small></ion-icon>-->
+          终点
+        </button>
+        <h6>{{req.endplace}}</h6>
+      </ion-item>
+
+      <ion-item>
+        <span item-left>{{req.time}}</span>
+        
+        <button ion-button icon-left clear item-right>
+          <ion-icon name="navigate"></ion-icon>
+          {{req.price}} 元
+        </button>
+      </ion-item>
+
+    </ion-card>
+
+  </ion-list>
+</ion-content>

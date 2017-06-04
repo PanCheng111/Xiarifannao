@@ -21,6 +21,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 import { MeetingListPage} from '../pages/meeting-list/meeting-list';
+import { HomePage } from '../pages/home/home';
+import { ReqDetailPage } from '../pages/req-detail/req-detail';
+import { ReqCreatePage } from '../pages/req-create/req-create';
+import { ReqListPage } from '../pages/req-list/req-list';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -49,6 +53,10 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     TutorialPage,
     SupportPage,
     MeetingListPage,
+    HomePage,
+    ReqDetailPage,
+    ReqCreatePage,
+    ReqListPage,
     PdfViewerComponent
   ],
   imports: [
@@ -73,7 +81,11 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     TabsPage,
     TutorialPage,
     SupportPage,
-    MeetingListPage
+    MeetingListPage,
+    HomePage,
+    ReqDetailPage,
+    ReqCreatePage,
+    ReqListPage
   ],
   providers: [
     ConferenceData,

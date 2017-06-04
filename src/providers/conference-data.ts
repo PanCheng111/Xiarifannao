@@ -14,6 +14,24 @@ export class ConferenceData {
   data: any;
   files: any;
   loginMessage: any;
+  reqList:any;
+  placeList: [any] = [
+"", 
+"启明学院",
+"图书馆",
+"百盛园餐厅",
+"东九教学楼",
+"学生服务中心",
+"韵园水果炒货店",
+"百味鲜快餐",
+"学生食堂",
+"韵苑学生公寓",
+"网络与计算中心",
+"武汉光电国家实验室",
+"快递自提点",
+"鼓风宿舍",
+"医学图像信息研究中心"
+];
 
   constructor(public http: Http, public user: UserData) { }
 
@@ -24,6 +42,14 @@ export class ConferenceData {
       return this.http.get('assets/data/data.json')
         .map(this.processData, this);
     }
+  }
+
+  loadPlace() : any {
+    return this.http.get('assets/data/place.json')
+          .map((data:any) => {
+            this.placeList = data.json();
+            return this.placeList;
+          }, this);
   }
 
   loadFiles(path: string): any {
@@ -40,13 +66,29 @@ export class ConferenceData {
     return this.loadFiles(path);
   }
 
+  getReqList(x: any, y: any):any {
+     let serverAddr = "http://ec2-34-208-214-12.us-west-2.compute.amazonaws.com:3000";
+     return this.http.get(serverAddr + '/main?x='+x+'&y='+y).map((data:any)=>{
+        this.reqList = data.json().list;
+        return this.reqList;
+      }, this);    
+  }
+
   checkLogin(username: string, password: string) : any {
-    return this.user.getServerAddr().then((serverAddr : string) => {
-      return this.http.get(serverAddr + '/api/doLogin?userName='+username+'&password='+password).map((data:any)=>{
-        this.loginMessage = data.json().status;
+    let serverAddr = "http://ec2-34-208-214-12.us-west-2.compute.amazonaws.com:3000";
+    // return this.user.getServerAddr().then((serverAddr : string) => {
+    //   // return new Observable<String>((sub: any) => {
+    //   //   return "success";
+    //   // });
+    //   return this.http.get(serverAddr + '/api/doLogin?userName='+username+'&password='+password).map((data:any)=>{
+    //     this.loginMessage = data.json().status;
+    //     return this.loginMessage;
+    //   }, this);
+    // });
+     return this.http.get(serverAddr + '/login?uname='+username+'&passwd='+password).map((data:any)=>{
+        this.loginMessage = data.json().message;
         return this.loginMessage;
       }, this);
-    });
   }
 
   getMeetings() : any {

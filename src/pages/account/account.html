@@ -3,19 +3,43 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Account</ion-title>
+    <ion-title>我的账户</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
   <div padding-top text-center *ngIf="username">
-    <img src="http://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
+    <img src="assets/img/avator.png" alt="avatar">
     <h2>{{username}}</h2>
 
     <ion-list inset>
       <button ion-item (click)="updatePicture()">上传头像</button>
-      <!--<button ion-item (click)="changeUsername()">更改用户名</button>
-      <button ion-item (click)="changePassword()">更改密码</button>-->
+      <button ion-item (click)="updatePicture()">
+        账户余额
+        <button ion-button outline item-right icon-left>
+          <ion-icon name="cash"></ion-icon>
+          40.0元
+        </button>
+      </button>
+      <button ion-item (click)="updatePicture()">
+        账户积分
+        <button ion-button outline item-right icon-left>
+          <ion-icon name="barcode"></ion-icon>
+          20分
+        </button>
+      </button>
+      <button ion-item (click)="doneWork()">
+        已成交的跑跑
+        <button ion-button outline item-right icon-left>
+          6 条
+        </button>
+      </button>
+      <button ion-item (click)="unDoneWork()">
+        未成交的跑跑
+        <button ion-button outline item-right icon-left>
+          4 条
+        </button>
+      </button>
       <button ion-item (click)="logout()">登出</button>
     </ion-list>
   </div>

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>发布跑腿任务</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--<div class="about-header">
+    <img src="{{req.thumbnail}}" height="30%" width="100%" alt="ionic logo">
+  </div>-->
+  <div padding class="about-info">
+
+    <form #loginForm="ngForm" novalidate>
+
+    <ion-list no-lines>
+
+      <ion-item>
+        <ion-icon name="key" item-left></ion-icon>
+        <ion-label>类别：</ion-label>
+        <ion-select [(ngModel)]="req.type" name="type" #type="ngModel" >
+          <ion-option value="帮取快递" selected>帮取快递</ion-option>
+          <ion-option value="帮带食堂饭菜">帮带食堂饭菜</ion-option>
+          <ion-option value="帮带水果">帮带水果</ion-option>
+          <ion-option value="帮购商品">帮购商品</ion-option>
+          <ion-option value="帮还图书">帮还图书</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin" item-left></ion-icon>
+        <ion-label>起点：</ion-label>
+        <ion-select [(ngModel)]="req.startplace" name="startplace" #startplace="ngModel">
+          <ion-option value="启明学院">启明学院</ion-option>
+          <ion-option value="图书馆">图书馆</ion-option>
+          <ion-option value="百盛园餐厅">百盛园餐厅</ion-option>
+          <ion-option value="东九教学楼">东九教学楼</ion-option>
+          <ion-option value="学生服务中心">学生服务中心</ion-option>
+          <ion-option value="韵园水果炒货店">韵园水果炒货店</ion-option>
+          <ion-option value="百味鲜快餐">百味鲜快餐</ion-option>
+          <ion-option value="学生食堂">学生食堂</ion-option>
+          <ion-option value="韵苑学生公寓">韵苑学生公寓</ion-option>
+          <ion-option value="网络与计算中心">网络与计算中心</ion-option>
+          <ion-option value="武汉光电国家实验室">武汉光电国家实验室</ion-option>
+          <ion-option value="快递自提点">快递自提点</ion-option>
+          <ion-option value="鼓风宿舍">鼓风宿舍</ion-option>
+          <ion-option value="医学图像信息研究中心">医学图像信息研究中心</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin" item-left></ion-icon>
+        <ion-label>终点：</ion-label>
+        <ion-select [(ngModel)]="req.endplace" name="endplace" #endplace="ngModel">
+          <ion-option value="启明学院">启明学院</ion-option>
+          <ion-option value="图书馆">图书馆</ion-option>
+          <ion-option value="百盛园餐厅">百盛园餐厅</ion-option>
+          <ion-option value="东九教学楼">东九教学楼</ion-option>
+          <ion-option value="学生服务中心">学生服务中心</ion-option>
+          <ion-option value="韵园水果炒货店">韵园水果炒货店</ion-option>
+          <ion-option value="百味鲜快餐">百味鲜快餐</ion-option>
+          <ion-option value="学生食堂">学生食堂</ion-option>
+          <ion-option value="韵苑学生公寓">韵苑学生公寓</ion-option>
+          <ion-option value="网络与计算中心">网络与计算中心</ion-option>
+          <ion-option value="武汉光电国家实验室">武汉光电国家实验室</ion-option>
+          <ion-option value="快递自提点">快递自提点</ion-option>
+          <ion-option value="鼓风宿舍">鼓风宿舍</ion-option>
+          <ion-option value="医学图像信息研究中心">医学图像信息研究中心</ion-option>
+        </ion-select>
+      </ion-item>      
+
+      <ion-item>
+        <ion-icon name="alarm" item-left></ion-icon>
+        <ion-label>期望时间：</ion-label>
+        <ion-select [(ngModel)]="req.time" name="time" #time="ngModel">
+          <ion-option value="10min以内" selected>10min以内</ion-option>
+          <ion-option value="30min以内">30min以内</ion-option>
+          <ion-option value="1h以内">1h以内</ion-option>
+          <ion-option value="1h以上">1h以上</ion-option>
+        </ion-select>
+        <!--<ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="conferenceDate"></ion-datetime>-->
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="paper" item-left></ion-icon>
+        <ion-label>跑腿消息：</ion-label>
+        <ion-input placeholder="简短描述需求" [(ngModel)]="req.message" name="message" #message="ngModel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="eye" item-left></ion-icon>
+        <ion-label>备注：</ion-label>
+        <ion-input placeholder="如果是快递，取货码填写在这里" [(ngModel)]="req.exmessage" name="exmessage" #exmessage="ngModel"></ion-input>
+      </ion-item>
+    </ion-list>
+    </form>
+
+    <button ion-button round (click)="showConfirm()">点击创建跑腿</button>
+
+  </div>
+</ion-content>

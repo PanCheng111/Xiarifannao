@@ -9,6 +9,9 @@ import { MapPage } from '../map/map';
 //import { SchedulePage } from '../schedule/schedule';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 import { SupportPage } from '../support/support';
+import { HomePage } from '../home/home';
+import { AccountPage } from '../account/account';
+import { ReqCreatePage } from '../req-create/req-create';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -16,9 +19,9 @@ import { SupportPage } from '../support/support';
 export class TabsPage {
   // set the root pages for each tab
   //tab1Root: any = SchedulePage;
-  tab2Root: any = SpeakerListPage;
-  tab3Root: any = MapPage;
-  tab4Root: any = AboutPage;
+  tab2Root: any = HomePage;
+  tab3Root: any = ReqCreatePage;
+  tab4Root: any = AccountPage;
   mySelectedIndex: number;
 
   constructor(navParams: NavParams, 

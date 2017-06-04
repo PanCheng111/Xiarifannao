@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -16,6 +17,8 @@ import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
 //import { MeetingListPage} from '../pages/meeting-list/meeting-list';
 import { MenuPopoverPage } from '../pages/menu-popover/menu-popover';
+import { ReqCreatePage } from '../pages/req-create/req-create';
+
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
@@ -41,20 +44,20 @@ export class ConferenceApp {
   // the login page disables the left menu
   appPages: PageInterface[] = [
    // { title: '会议流程', component: TabsPage, tabComponent: SchedulePage, icon: 'calendar' },
-    { title: '会议内容', component: TabsPage, tabComponent: SpeakerListPage, index: 0, icon: 'calendar' },
-    { title: '参会人员', component: TabsPage, tabComponent: MapPage, index: 1, icon: 'contacts' },
-    { title: '会议主题', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
+    { title: '跑腿主页', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'home' },
+    { title: '发布任务', component: TabsPage, tabComponent: ReqCreatePage, index: 1, icon: 'cloud-upload' },
+    { title: '我的账户', component: TabsPage, tabComponent: AccountPage, index: 2, icon: 'information-circle' }
   ];
-  loggedInPages: PageInterface[] = [
-    { title: '账户', component: AccountPage, icon: 'person' },
-    { title: '登出', component: LoginPage, icon: 'log-out', logsOut: true },
-    { title: '服务器', component: SupportPage, icon: 'hammer' },
-  ];
-  loggedOutPages: PageInterface[] = [
-    { title: '登录', component: LoginPage, icon: 'log-in' },
-    { title: '注册', component: SignupPage, icon: 'person-add' },
-    { title: '服务器', component: SupportPage, icon: 'hammer' },
-  ];
+  // loggedInPages: PageInterface[] = [
+  //   { title: '账户', component: AccountPage, icon: 'person' },
+  //   { title: '登出', component: LoginPage, icon: 'log-out', logsOut: true },
+  //   { title: '服务器', component: SupportPage, icon: 'hammer' },
+  // ];
+  // loggedOutPages: PageInterface[] = [
+  //   { title: '登录', component: LoginPage, icon: 'log-in' },
+  //   { title: '注册', component: SignupPage, icon: 'person-add' },
+  //   { title: '服务器', component: SupportPage, icon: 'hammer' },
+  // ];
   rootPage: any;
 
   constructor(
@@ -72,18 +75,19 @@ export class ConferenceApp {
 
     //隐藏边栏
     this.menu.enable(false);
-    this.storage.get('hasServerAddr')
+    this.storage.get('hasLogin')
       .then((hasServerAddr) => {
-        if (hasServerAddr) {
+        if (!hasServerAddr) {
           this.rootPage = LoginPage;
         } else {
-          this.rootPage = SupportPage;
+          this.rootPage = TabsPage;
         }
         this.platformReady()
       })
 
     // load the conference data
     confData.load();
+    //confData.loadPlace();
 
     // decide which menu items should be hidden by current login status stored in local storage
     // this.userData.hasLoggedIn().then((hasLoggedIn) => {

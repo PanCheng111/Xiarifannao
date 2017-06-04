@@ -10,7 +10,7 @@ import { TabsPage } from '../tabs/tabs';
 import { UserData } from '../../providers/user-data';
 import { PopoverPage } from '../about-popover/about-popover';
 import { ConferenceData } from '../../providers/conference-data';
-
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-user',
@@ -25,18 +25,20 @@ export class LoginPage {
     public userData: UserData,
     public confData: ConferenceData,
     public toastCtrl: ToastController,
+    //public nav: NavController,
     public popoverCtrl: PopoverController) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
 
     if (form.valid) {
-      this.confData.checkLogin(this.login.username, this.login.password).then((obversabler:any)=>{
-        obversabler.subscribe((value:any)=>{
+      // this.userData.login(this.login.username);
+      // this.navCtrl.setRoot(TabsPage);
+      this.confData.checkLogin(this.login.username, this.login.password).subscribe((value:any)=>{
           console.log("login obversabler = " + value);
-          if (value == 'success') {
+          if (value == 'ok') {
             this.userData.login(this.login.username);
-            this.navCtrl.push(MeetingListPage);
+            this.navCtrl.push(TabsPage);
           }
           else {
                 let toast = this.toastCtrl.create({
@@ -47,7 +49,7 @@ export class LoginPage {
                 this.login = {};
           }
         });        
-      });
+    //  });
     }
   }
 
